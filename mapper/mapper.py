@@ -21,8 +21,8 @@ print("before:\t",result)
 
 sourceKeys = source.keys()
 for k in result:
+    targetValue = None
     if lookup[k] in sourceKeys:
-        result[k] = source[lookup[k]]
-    else:
-        result[k] = None
+        targetValue = source[lookup[k]]
+    result[k] = targetValue
 print("after:\t",result)

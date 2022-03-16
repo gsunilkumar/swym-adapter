@@ -1,5 +1,17 @@
 import requests
 
+class Mapper(object):
+    @staticmethod
+    def Transform(source, target, lookup):
+        result = mapping.copy()
+        sourceKeys = source.keys()
+
+        for k in result:
+            targetValue = None
+            if lookup[k] in sourceKeys:
+                targetValue = source[lookup[k]]
+            target[k] = targetValue
+
 class Adaptor(object):
     def __init__(self):
         pass
@@ -41,6 +53,13 @@ class Merchant(object):
         self.Name = "Merchant1"
         pass
 
-adaptor = AdaptorImpl()
-adaptor.GetMetadata()
-adaptor.GetData()
+# adaptor = AdaptorImpl()
+# adaptor.GetMetadata()
+# adaptor.GetData()
+
+source = {'a':12,'b':2}
+target = {'x':1, 'y':2, 'z':4}
+mapping = {'y': 'a'}
+print(target)
+Mapper.Transform(source, target, mapping)
+print(target)
