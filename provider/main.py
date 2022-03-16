@@ -3,21 +3,21 @@ from flask import Flask, json
 metadata = [
   {
     "id": 0,
-    "sku": "string",
-    "name": "string",
+    "sku": "",
+    "name": "",
     "attribute_set_id": 0,
     "price": 0,
     "status": 0,
     "visibility": 0,
-    "type_id": "string",
-    "created_at": "string",
-    "updated_at": "string",
+    "type_id": "",
+    "created_at": "",
+    "updated_at": "",
     "weight": 0
   },
   {
     "recordid": 0,
-    "sku": "string",
-    "title": "string",
+    "sku": "",
+    "title": "",
     "prop_id": 0,
     "cost": 0,
     "status": 0,

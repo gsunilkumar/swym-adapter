@@ -10,7 +10,6 @@ class AdaptorImpl(Adaptor):
         self.ProductUrl = "http://localhost:7002/datafeed/{}/product".format(self.ProviderId)
 
     def GetMetadata(self):
-        print("Adaptor implementation - GetMetadata", self.ProviderUrl)
         r = requests.get(self.ProviderUrl)
         data = r.json()
         print("Product Metadata", data)
@@ -30,7 +29,8 @@ class AdaptorImpl(Adaptor):
         print('Merchant internal data: ', data)
 
         lookup = self.GetMappings()
-        target = data.copy()
+        providerMetadata = self.GetMetadata()
+        target = providerMetadata.copy()
         self.Transform(data, target, lookup)
 
         print('Transformed data:', target)

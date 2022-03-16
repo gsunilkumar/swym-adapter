@@ -11,3 +11,7 @@ services:
     build: datafeed
     ports:
       - 7002:7002
+  testenv:
+    image: testenv
+    build: testenv
+    container_name: testenv
