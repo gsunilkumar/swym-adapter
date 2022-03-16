@@ -6,3 +6,8 @@ services:
     build: provider
     ports:
       - 7001:7001
+  datafeed:
+    image: datafeed
+    build: datafeed
+    ports:
+      - 7002:7002
