@@ -1,3 +1,5 @@
+import requests
+
 class Adaptor(object):
     def __init__(self):
         pass
@@ -17,10 +19,9 @@ class AdaptorImpl(Adaptor):
         self.ProviderUrl = "http://localhost:7001/provider/{}/metadata".format(self.ProviderId)
 
     def GetMetadata(self):
-        print(self.ProviderUrl)
-        print("Adaptor implementation - GetMetadata")
-        # Read from external provider
-        return {'a':0, 'b' : 0, 'c' : 10}
+        print("Adaptor implementation - GetMetadata", self.ProviderUrl)
+        r = requests.get(self.ProviderUrl)
+        return r.json()
 
     # pull internal data and transform
     def GetData(self):
