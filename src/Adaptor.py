@@ -3,12 +3,13 @@ import requests
 class Mapper(object):
     @staticmethod
     def Transform(source, target, lookup):
-        result = mapping.copy()
         sourceKeys = source.keys()
+        lookupKeys = lookup.keys()
 
-        for k in result:
+        for k in mapping:
             targetValue = None
-            if lookup[k] in sourceKeys:
+            print(k, lookup)
+            if k in lookupKeys and lookup[k] in sourceKeys:
                 targetValue = source[lookup[k]]
             target[k] = targetValue
 
@@ -24,6 +25,7 @@ class Adaptor(object):
 
     def Transform(self, source, destination, mapping):
         print("Applying transformations")
+        Mapper.Transform(source, destination, mapping)
 
 class AdaptorImpl(Adaptor):
     def __init__(self):
@@ -35,13 +37,19 @@ class AdaptorImpl(Adaptor):
         r = requests.get(self.ProviderUrl)
         return r.json()
 
+    def GetMappings(self):
+        return {'title': 'name'}
+
     # pull internal data and transform
     def GetData(self):
         print("Adaptor implementation - GetData")
         # Read from internal/external data providers
-        data = {'a':1, 'b': 2}
-        self.Transform(data, data, data)
-        return data
+        data = {'name': "some name", 'b': 2}
+        lookup = self.GetMappings()
+        target = data.copy()
+        self.Transform(data, target, lookup)
+        print(target)
+        return target
 
 class Merchant(object):
     def GetProduct(self):
@@ -55,11 +63,16 @@ class Merchant(object):
 
 # adaptor = AdaptorImpl()
 # adaptor.GetMetadata()
-# adaptor.GetData()
+
+# source = {'a':12,'b':2}
+# target = {'x':1, 'y':2, 'z':4}
+# mapping = {'y': 'a'}
+# print(target)
+# Mapper.Transform(source, target, mapping)
+# print(target)
 
 source = {'a':12,'b':2}
 target = {'x':1, 'y':2, 'z':4}
-mapping = {'y': 'a'}
-print(target)
-Mapper.Transform(source, target, mapping)
-print(target)
+mapping = {'title': 'name'}
+adaptor = AdaptorImpl()
+adaptor.GetData()
