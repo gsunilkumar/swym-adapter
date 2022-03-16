@@ -1,3 +1,4 @@
+
 class Mapper(object):
     @staticmethod
     def Transform(source, target, lookup):

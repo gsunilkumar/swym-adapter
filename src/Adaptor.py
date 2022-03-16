@@ -1,34 +1,5 @@
 import requests
-
-class Mapper(object):
-    @staticmethod
-    def Transform(source, target, lookup):
-        sourceKeys = source.keys()
-        lookupKeys = lookup.keys()
-
-        removeReverseKey = True # make it mapper configuration
-        for k in lookup:
-            targetValue = None
-            if k in lookupKeys and lookup[k] in sourceKeys:
-                targetValue = source[lookup[k]]
-                if removeReverseKey:
-                    del target[lookup[k]]
-
-            target[k] = targetValue
-
-class Adaptor(object):
-    def __init__(self):
-        pass
-
-    def GetMetadata(self):
-        pass
-
-    def GetData(self):
-        pass
-
-    def Transform(self, source, destination, mapping):
-        print("Applying transformations:", mapping)
-        Mapper.Transform(source, destination, mapping)
+from swym.adaptor import Adaptor
 
 class AdaptorImpl(Adaptor):
     def __init__(self, id):
@@ -70,13 +41,6 @@ class Merchant(object):
 
 # adaptor = AdaptorImpl()
 # adaptor.GetMetadata()
-
-# source = {'a':12,'b':2}
-# target = {'x':1, 'y':2, 'z':4}
-# mapping = {'y': 'a'}
-# print(target)
-# Mapper.Transform(source, target, mapping)
-# print(target)
 
 # source = {'a':12,'b':2}
 # target = {'x':1, 'y':2, 'z':4}

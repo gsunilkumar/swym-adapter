@@ -1,4 +1,4 @@
-from mapper import Mapper
+from swym.mapper import Mapper
 
 class Adaptor(object):
     def __init__(self):
