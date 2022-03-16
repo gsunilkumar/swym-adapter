@@ -65,6 +65,9 @@ Abstract the product metadata differences between different providers.
 
 #### Internals:
 - Workflow
+
 ![Workflow](./docs/workflow.png?raw=true "Workflow")
+
 - Class diagram
+
 ![Class](./docs/class-diagram.png?raw=true "Class")
