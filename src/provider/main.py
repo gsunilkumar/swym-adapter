@@ -1,5 +1,4 @@
 from flask import Flask, json
-from markupsafe import escape
 
 metadata = [
   {

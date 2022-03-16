@@ -6,11 +6,15 @@ class Mapper(object):
         sourceKeys = source.keys()
         lookupKeys = lookup.keys()
 
-        for k in mapping:
+        removeReverseKey = True # make it mapper configuration
+        for k in lookup:
             targetValue = None
             print(k, lookup)
             if k in lookupKeys and lookup[k] in sourceKeys:
                 targetValue = source[lookup[k]]
+                if removeReverseKey:
+                    del target[lookup[k]]
+
             target[k] = targetValue
 
 class Adaptor(object):
@@ -28,10 +32,10 @@ class Adaptor(object):
         Mapper.Transform(source, destination, mapping)
 
 class AdaptorImpl(Adaptor):
-    def __init__(self):
-        self.ProviderId = 0
+    def __init__(self, id):
+        self.ProviderId = id
         self.ProviderUrl = "http://localhost:7001/provider/{}/metadata".format(self.ProviderId)
-
+        self.ProductUrl = "http://localhost:7002/datafeed/{}/product".format(self.ProviderId)
     def GetMetadata(self):
         print("Adaptor implementation - GetMetadata", self.ProviderUrl)
         r = requests.get(self.ProviderUrl)
@@ -43,23 +47,27 @@ class AdaptorImpl(Adaptor):
     # pull internal data and transform
     def GetData(self):
         print("Adaptor implementation - GetData")
-        # Read from internal/external data providers
-        data = {'name': "some name", 'b': 2}
+
+        r = requests.get(self.ProductUrl)
+        data = r.json()
+        print('Original data: ', data)
+
         lookup = self.GetMappings()
         target = data.copy()
         self.Transform(data, target, lookup)
-        print(target)
+
+        print('Transformed data:',target)
         return target
 
 class Merchant(object):
     def GetProduct(self):
         print("Merchant:", self.Name, "GetProduct")
-        pass
+        data = self.adaptorImpl.GetData()
+        return data
 
-    def __init__(self, adaptorImpl):
-        self.adaptorImpl = adaptorImpl
+    def __init__(self, id):
+        self.adaptorImpl = AdaptorImpl(id)
         self.Name = "Merchant1"
-        pass
 
 # adaptor = AdaptorImpl()
 # adaptor.GetMetadata()
@@ -71,8 +79,11 @@ class Merchant(object):
 # Mapper.Transform(source, target, mapping)
 # print(target)
 
-source = {'a':12,'b':2}
-target = {'x':1, 'y':2, 'z':4}
-mapping = {'title': 'name'}
-adaptor = AdaptorImpl()
-adaptor.GetData()
+# source = {'a':12,'b':2}
+# target = {'x':1, 'y':2, 'z':4}
+# mapping = {'title': 'name'}
+# adaptor = AdaptorImpl()
+# adaptor.GetData()
+
+merchant1 = Merchant(0)
+merchant1.GetProduct()
