@@ -9,7 +9,6 @@ class Mapper(object):
         removeReverseKey = True # make it mapper configuration
         for k in lookup:
             targetValue = None
-            print(k, lookup)
             if k in lookupKeys and lookup[k] in sourceKeys:
                 targetValue = source[lookup[k]]
                 if removeReverseKey:
@@ -28,7 +27,7 @@ class Adaptor(object):
         pass
 
     def Transform(self, source, destination, mapping):
-        print("Applying transformations")
+        print("Applying transformations:", mapping)
         Mapper.Transform(source, destination, mapping)
 
 class AdaptorImpl(Adaptor):
@@ -46,7 +45,7 @@ class AdaptorImpl(Adaptor):
 
     # pull internal data and transform
     def GetData(self):
-        print("Adaptor implementation - GetData")
+        print("Adaptor implementation - GetData", self.ProductUrl)
 
         r = requests.get(self.ProductUrl)
         data = r.json()
@@ -85,5 +84,5 @@ class Merchant(object):
 # adaptor = AdaptorImpl()
 # adaptor.GetData()
 
-merchant1 = Merchant(0)
+merchant1 = Merchant(1)
 merchant1.GetProduct()
