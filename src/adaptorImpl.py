@@ -1,5 +1,7 @@
-from swym.adaptor import Adaptor
+import json
 import requests
+from swym.adaptor import Adaptor
+
 
 class AdaptorImpl(Adaptor):
     def __init__(self, id):
@@ -12,7 +14,11 @@ class AdaptorImpl(Adaptor):
         return r.json()
 
     def GetMappings(self):
-        return {'title': 'name'}
+        configSource = "./mapping.json"
+        mappings = {}
+        with open(configSource, 'r') as f:
+            mappings = json.load(f)
+        return mappings
 
     # pull internal data and transform
     def GetData(self):
