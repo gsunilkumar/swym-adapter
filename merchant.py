@@ -21,5 +21,5 @@ class Merchant(object):
 # adaptor = AdaptorImpl()
 # adaptor.GetData()
 
-merchant1 = Merchant(1)
+merchant1 = Merchant(0)
 merchant1.GetProduct()

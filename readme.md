@@ -38,13 +38,16 @@ Abstract the product metadata differences between different providers.
 - Transformed data, using this client
     ```json
     {
-        "cost": 0,
-        "prop_id": 0,
-        "recordid": 0,
-        "sku": "string",
+        "attribute_set_id": 0,
+        "created_at": "",
+        "id": 0, "price": 0,
+        "sku": "",
         "status": 0,
-        "title": "some product", 
-        "visibility": 0
+        "type_id": "",
+        "updated_at": "",
+        "visibility": 0,
+        "weight": 0,
+        "title": "some name"
     }
     ```
 
