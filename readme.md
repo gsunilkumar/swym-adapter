@@ -32,7 +32,9 @@ Abstract the product metadata differences between different providers.
 - Mapping/configuration to transform data to target schema
     ```json
     {
-    	"title": "name"
+        "title": "name",
+        "weight": "price",
+        "notes": "description"
     }
     ```
 - Transformed data, using this client
@@ -40,14 +42,15 @@ Abstract the product metadata differences between different providers.
     {
         "attribute_set_id": 0,
         "created_at": "",
-        "id": 0, "price": 0,
+        "id": 0,
         "sku": "",
         "status": 0,
         "type_id": "",
         "updated_at": "",
         "visibility": 0,
-        "weight": 0,
-        "title": "some name"
+        "weight": 100,
+        "title": "some name",
+        "notes": "some description"
     }
     ```
 
