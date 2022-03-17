@@ -48,9 +48,9 @@ Abstract the product metadata differences between different providers.
         "type_id": "",
         "updated_at": "",
         "visibility": 0,
-        "weight": 100,
-        "title": "some name",
-        "notes": "some description"
+        "weight": 200,
+        "title": "some product",
+        "notes": "some notes"
     }
     ```
 
