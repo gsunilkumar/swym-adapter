@@ -1,5 +1,6 @@
 import json
 import requests
+from flask import jsonify
 from transformmanager import TransformManager
 
 class TransformSvc(object):
@@ -11,4 +12,4 @@ class TransformSvc(object):
 		transformedData = self.manager.Transform(payload)
 		print("transformedData", transformedData)
 		
-		return json.dumps(transformedData)
+		return jsonify(transformedData)
