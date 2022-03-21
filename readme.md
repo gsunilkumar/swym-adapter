@@ -98,6 +98,7 @@ Abstract the product metadata differences between different providers.
 
 #### Internals:
 - Workflow
+
     ![Workflow](./docs/workflow.png?raw=true "Workflow")
 - As hosted service
     - High level architecture
