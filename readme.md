@@ -72,10 +72,10 @@ Abstract the product metadata differences between different providers.
                         "provider":1,
                         "products":[
                             {
-                                name: "some title 1"
+                                "name": "some title 1"
                             },
                             {
-                                name: "some title 2"
+                                "name": "some title 2"
                             }
                         ]
                     }
