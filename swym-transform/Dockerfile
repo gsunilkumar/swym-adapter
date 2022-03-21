@@ -2,7 +2,7 @@ FROM python:3.7-slim
 
 WORKDIR /app
 
-RUN pip install flask
+RUN pip install flask requests
 
 RUN apt-get update && apt-get install -y curl
 

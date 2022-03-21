@@ -1,13 +1,17 @@
 import json
 import requests
 from mapper import Mapper
+import os
 
 class TransformManager(object):
 	def __init__(self):
-	  self.ProviderUrlFormat = "http://localhost:7001/provider/{}/metadata"
+	  self.ProviderUrlFormat = "http://{basepath}/provider/{id}/metadata"
+	  self.provider_basepath = "localhost:7001"
+	  if 'PROVIDER_API' in os.environ:
+		  self.provider_basepath = os.environ['PROVIDER_API']
 
 	def GetMetadata(self, provider):
-	  providerEndpoint = self.ProviderUrlFormat.format(provider)
+	  providerEndpoint = self.ProviderUrlFormat.format(basepath=self.provider_basepath,id=provider)
 	  print("Fetching metadata from: ", providerEndpoint)
 
 	  r = requests.get(providerEndpoint)

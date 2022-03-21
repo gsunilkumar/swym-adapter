@@ -6,7 +6,7 @@ api = Flask(__name__)
 port = 7003
 
 
-@api.route('/transform', methods=['POST'])
+@api.route('/api/swym/transform', methods=['POST'])
 def GetTransformedData():
   payload = request.get_json(force=True)
   return transformsvc.Transform(payload)
