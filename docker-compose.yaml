@@ -4,13 +4,23 @@ services:
   provider:
     image: provider
     build: provider
+    container_name: provider
     ports:
       - 7001:7001
   datafeed:
     image: datafeed
     build: datafeed
+    container_name: datafeed
     ports:
       - 7002:7002
+  swym_transform:
+    image: swym_transform
+    build: swym-transform
+    container_name: swym_transform
+    ports:
+      - 7003:7003
+    environment:
+      - PROVIDER_API=provider:7001
   testenv:
     image: testenv
     build: testenv
