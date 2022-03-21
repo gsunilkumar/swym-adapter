@@ -1,0 +1,11 @@
+[
+	{
+		"id":0,
+		"provider":0,
+		"lookup":{
+			"Product": "name",
+			"weight": "price",
+			"notes": "description"
+		}
+	}
+]
