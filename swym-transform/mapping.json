@@ -7,5 +7,32 @@
 			"weight": "price",
 			"notes": "description"
 		}
+	},
+	{
+		"id":1,
+		"provider":1,
+		"lookup":{
+			"Title": "name",
+			"weight": "amount",
+			"notes": "description"
+		}
+	},
+	{
+		"id":2,
+		"provider":2,
+		"lookup":{
+			"Product Name": "name",
+			"weight": "price",
+			"Description": "description"
+		}
+	},
+	{
+		"id":3,
+		"provider":0,
+		"lookup":{
+			"Name": "name",
+			"Cost": "price",
+			"summary": "description"
+		}
 	}
 ]

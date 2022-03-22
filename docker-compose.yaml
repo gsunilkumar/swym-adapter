@@ -21,6 +21,8 @@ services:
       - 7003:7003
     environment:
       - PROVIDER_API=provider:7001
+    volumes:
+      - ./swym-transform/mapping.json:/app/mapping.json
   testenv:
     image: testenv
     build: testenv

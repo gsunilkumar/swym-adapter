@@ -12,7 +12,8 @@ metadata = [
     "type_id": "",
     "created_at": "",
     "updated_at": "",
-    "weight": 0
+    "weight": 0,
+    "provider": "Provider 0"
   },
   {
     "recordid": 0,
@@ -21,7 +22,18 @@ metadata = [
     "prop_id": 0,
     "cost": 0,
     "status": 0,
-    "visibility": 0
+    "visibility": 0,
+    "provider": "Provider 1"
+  },
+  {
+    "recordid": 0,
+    "sku": "",
+    "title": "",
+    "prop_id": 0,
+    "cost": 0,
+    "status": 0,
+    "visibility": 0,
+    "provider": "Provider 2"
   }
 ]
 

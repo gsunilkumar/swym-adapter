@@ -11,12 +11,18 @@ class TransformManager(object):
 		  self.provider_basepath = os.environ['PROVIDER_API']
 
 	def GetMetadata(self, provider):
+	  if provider == -1:
+	  	return {}
 	  providerEndpoint = self.ProviderUrlFormat.format(basepath=self.provider_basepath,id=provider)
 	  print("Fetching metadata from: ", providerEndpoint)
-
-	  r = requests.get(providerEndpoint)
-	  data = r.json()
-	  print("Product Metadata", data)
+	  data = {}
+	  try:
+		  r = requests.get(providerEndpoint)
+		  data = r.json()
+		  print("Product Metadata", data)
+	  except requests.exceptions.RequestException as e:
+	  	print("Failed to get metadata")
+	  
 	  return data
 
 	def GetMappings(self, id): # input: mapping id
@@ -30,13 +36,26 @@ class TransformManager(object):
 	  return {}
 
 	def Transform(self, payload):
+		print(payload)
 		mappingId = payload["id"]
 		mapping = self.GetMappings(mappingId)
 		print(mapping)
 
-		lookup = mapping['lookup'] 
+		lookup = {}
+		if 'lookup' in mapping:
+			lookup = mapping['lookup']
+		else:
+			print("No lookup available")
 		print("Lookup:",lookup)
-		destination = self.GetMetadata(mapping['provider'])
+
+		provider=-1
+		if 'provider' in mapping:
+			provider = mapping['provider']
+		else:
+			print("Provider is unavailable")
+			return {}
+
+		destination = self.GetMetadata(provider)
 		print(destination)
 		data = []
 
